@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "netmon"
+version = "0.1.0"
+description = "Terminal monitor for ports, Docker containers, and AI processes"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+dependencies = [
+    "textual>=0.52.0",
+    "textual-plotext>=1.0.0",
+]
+
+[project.scripts]
+netmon = "netmon.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["netmon*"]

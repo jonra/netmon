@@ -1,0 +1,205 @@
+/* ── netmon layout ──────────────────────────────────────────── */
+
+Screen {
+    background: $surface;
+}
+
+/* ── Actions bar ─────────────────────────────────────────────── */
+
+ActionsBar {
+    dock: top;
+    height: 3;
+    background: $panel;
+    padding: 0 1;
+    layout: horizontal;
+    align: left middle;
+    border-bottom: solid $accent-darken-3;
+}
+
+ActionsBar > Label {
+    margin-right: 1;
+    color: $text-muted;
+}
+
+ActionsBar > Button {
+    min-width: 10;
+    margin: 0 1 0 0;
+}
+
+#spacer {
+    width: 1fr;
+}
+
+#status-label {
+    color: $text-muted;
+    text-style: italic;
+}
+
+/* ── System metrics strip (CPU + Memory) ─────────────────────── */
+
+#sys-metrics {
+    height: 11;
+    layout: horizontal;
+}
+
+#cpu-metrics {
+    width: 2fr;
+}
+
+#mem-metrics {
+    width: 3fr;
+}
+
+CpuMetricsPane,
+MemMetricsPane {
+    border: solid $accent-darken-3;
+    padding: 0 1;
+}
+
+#cpu-stats,
+#mem-summary,
+#mem-detail {
+    width: auto;
+    min-width: 22;
+    height: 100%;
+    content-align: left top;
+}
+
+#mem-pressure-col {
+    width: 1fr;
+    min-width: 14;
+    height: 100%;
+    layout: vertical;
+}
+
+#mem-pressure-label {
+    height: 1;
+}
+
+#cpu-chart-col {
+    width: 1fr;
+    height: 100%;
+    layout: vertical;
+}
+
+#cpu-chart-title {
+    height: 1;
+}
+
+#cpu-plot,
+#mem-pressure-plot,
+BraillePlot {
+    height: 1fr;
+    min-height: 6;
+}
+
+/* ── Main layout: vertical container of two rows ─────────────── */
+
+#main-layout {
+    height: 1fr;
+    layout: vertical;
+}
+
+#top-row {
+    height: 2fr;
+    layout: horizontal;
+}
+
+#mid-row {
+    height: 2fr;
+    layout: horizontal;
+}
+
+#sessions {
+    height: 1fr;
+}
+
+/* Top row: Ports gets 60%, Details gets 40% */
+#ports  { width: 3fr; }
+#detail { width: 2fr; }
+
+/* Mid row: docker, heroku, agents */
+#docker { width: 1fr; }
+#heroku { width: 2fr; }
+#agents { width: 1fr; }
+
+/* ── Shared pane styles ──────────────────────────────────────── */
+
+PortsPane,
+DetailPane,
+DockerPane,
+HerokuPane,
+AgentsPane,
+SessionsPane,
+CursorSessionsPane {
+    border: solid $accent-darken-3;
+    padding: 0;
+}
+
+PortsPane:focus-within,
+DetailPane:focus-within,
+DockerPane:focus-within,
+HerokuPane:focus-within,
+AgentsPane:focus-within,
+SessionsPane:focus-within,
+CursorSessionsPane:focus-within {
+    border: solid $accent;
+}
+
+SessionsRow {
+    height: 1fr;
+}
+
+SessionsRow TabbedContent {
+    height: 1fr;
+}
+
+SessionsRow TabPane {
+    padding: 0;
+    height: 1fr;
+}
+
+/* Port filter input — hidden until activated */
+#port-filter {
+    dock: bottom;
+    height: 1;
+    margin: 0;
+}
+
+/* Detail pane inner log */
+#detail-log {
+    padding: 0 1;
+}
+
+/* ── Docker confirm modal ────────────────────────────────────── */
+
+_ConfirmModal {
+    align: center middle;
+}
+
+#confirm-box {
+    width: 50;
+    height: auto;
+    border: double $error;
+    background: $surface;
+    padding: 1 2;
+}
+
+#confirm-title { margin-bottom: 1; }
+#confirm-body  { color: $text-muted; margin-bottom: 1; }
+#confirm-keys  { color: $text-muted; }
+
+/* ── Docker / Heroku logs modals ─────────────────────────────── */
+
+DockerLogsModal, HerokuLogsModal {
+    align: center middle;
+}
+
+DockerLogsModal > RichLog,
+HerokuLogsModal > RichLog {
+    width: 90%;
+    height: 80%;
+    border: double $accent;
+    background: $surface;
+    padding: 1 2;
+}

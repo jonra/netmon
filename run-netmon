@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Unified network monitor TUI — run from anywhere
+set -e
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VENV="$SCRIPT_DIR/.venv"
+
+if [ ! -d "$VENV" ]; then
+    echo "Running setup first..."
+    bash "$SCRIPT_DIR/setup.sh"
+fi
+
+if ! "$VENV/bin/python" -c "import textual" 2>/dev/null; then
+    echo "Installing textual..."
+    "$VENV/bin/pip" install textual -q
+fi
+
+source "$VENV/bin/activate"
+cd "$SCRIPT_DIR"
+exec python -m netmon "$@"
