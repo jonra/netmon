@@ -6,12 +6,7 @@ VENV="$SCRIPT_DIR/.venv"
 
 if [ ! -d "$VENV" ]; then
     echo "Running setup first..."
-    bash "$SCRIPT_DIR/setup.sh"
-fi
-
-if ! "$VENV/bin/python" -c "import textual" 2>/dev/null; then
-    echo "Installing textual..."
-    "$VENV/bin/pip" install textual -q
+    bash "$SCRIPT_DIR/install.sh"
 fi
 
 source "$VENV/bin/activate"
